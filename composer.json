@@ -1,5 +1,5 @@
 {
-  "name": "bigtallbill/php-mongo-model",
+  "name": "bigtallbill/php-data-model",
   "autoload": {
     "psr-0": {
       "Bigtallbill\\": "/src/"
