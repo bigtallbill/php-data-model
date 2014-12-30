@@ -37,12 +37,12 @@ class DbWrapper
     {
         // do a findOne if only a specific _id is requested (much faster)
         if (count($options->query) === 1 && array_key_exists('_id', $options->query)) {
-            $result = $this->conn->{$options->db}->{$options->col}->findOne($options->query, $options->fields);
+            $result = $this->conn->{$options->db}->{$options->col}->findOne($options->query, $options->options);
             $this->isResponseOk($result);
             return $result;
         }
 
-        $result = $this->conn->{$options->db}->{$options->col}->find($options->query, $options->fields);
+        $result = $this->conn->{$options->db}->{$options->col}->find($options->query, $options->options);
         $this->isResponseOk($result);
         return $result;
     }
