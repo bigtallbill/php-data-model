@@ -80,10 +80,10 @@ abstract class AModel implements IDbWrapperUser
         }
 
         // store any unique modified values to allow building a query later
-        if (isset($this->values[$name]) && $this->{$name} !== $value) {
+        if ($this->{$name} !== $value) {
 
             // id fields cannot be modified after they are set
-            if ($name === 'id' && $value != null) {
+            if ($name === 'id' && $this->id != null) {
                 return;
             }
             $this->modified[$name] = $value;
