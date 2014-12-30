@@ -149,19 +149,6 @@ abstract class AModel implements IDbWrapperUser
                 continue;
             }
 
-            if (isset($this->config[$name]) && isset($this->config[$name]['types'])) {
-
-                // if this value should be Model type then convert it to a model
-                foreach ($this->config[$name]['types'] as $type) {
-                    if (is_subclass_of($type, 'Bigtallbill\Model\AModel') || $type === 'Bigtallbill\Model\AModel') {
-                        $valueObject = new $type(null, '', '', array(), true);
-                        $valueObject->fromArray($value);
-                        $value = $valueObject;
-                        break;
-                    }
-                }
-            }
-
             $this->{$name} = $value;
         }
     }
