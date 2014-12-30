@@ -9,9 +9,10 @@
 namespace Bigtallbill\Model;
 
 
+use Bigtallbill\Interfaces\IDbWrapperUser;
 use Bigtallbill\Model\DbWrapper\ADbWrapper;
 
-abstract class AModel
+abstract class AModel implements IDbWrapperUser
 {
     /** @var ADbWrapper */
     protected $client;
@@ -42,7 +43,7 @@ abstract class AModel
         array $config = array(),
         $allowUnknownProperties = false
     ) {
-        $this->client = $client;
+        $this->setConnection($client);
         $this->databaseName = $databaseName;
         $this->collectionName = $collectionName;
         $this->config = $config;
@@ -170,6 +171,14 @@ abstract class AModel
         return !is_null($this->id);
     }
 
+    //--------------------------------------
+    // INTERFACE REQUIREMENTS
+    //--------------------------------------
+
+    public function setConnection(ADbWrapper $conn)
+    {
+        $this->client = $conn;
+    }
 
     //--------------------------------------
     // DB INTERFACE
