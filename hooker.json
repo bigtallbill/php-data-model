@@ -1,0 +1,21 @@
+{
+  "preCommit": {
+    "scripts": {
+      "after": [
+        {
+          "cmd": "bash runtests.sh",
+          "passGitArgs": false
+        }
+      ]
+    }
+  },
+  "prePush": {},
+  "commitMsg": {
+    "firstWordImperative": true,
+    "maxSummaryLength": 72,
+    "maxContentLength": 72,
+    "summaryIgnoreUrls": true,
+    "contentIgnoreUrls": true,
+    "lineAfterSummaryMustBeBlank": true
+  }
+}
