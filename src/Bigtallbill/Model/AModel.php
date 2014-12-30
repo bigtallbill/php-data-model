@@ -92,14 +92,15 @@ abstract class AModel implements IDbWrapperUser
         $this->values[$name] = $value;
     }
 
-    public function __get($name)
+    public function &__get($name)
     {
         if (!array_key_exists($name, $this->config) && !$this->allowUnknownProperties) {
             throw new \RuntimeException("$name is not a valid property");
         }
 
         if (!isset($this->values[$name])) {
-            return null;
+            $null = null;
+            return $null;
         }
 
         return $this->values[$name];
