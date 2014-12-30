@@ -9,11 +9,11 @@
 namespace Bigtallbill\Model;
 
 
-use Bigtallbill\Model\DbWrapper\DbWrapper;
+use Bigtallbill\Model\DbWrapper\ADbWrapper;
 
 abstract class AModel
 {
-    /** @var DbWrapper */
+    /** @var ADbWrapper */
     protected $client;
 
     protected $databaseName;
@@ -29,14 +29,14 @@ abstract class AModel
     protected $allowUnknownProperties = false;
 
     /**
-     * @param DbWrapper $client
+     * @param ADbWrapper $client
      * @param string $databaseName
      * @param string $collectionName
      * @param array $config
      * @param bool $allowUnknownProperties
      */
     function __construct(
-        DbWrapper $client = null,
+        ADbWrapper $client = null,
         $databaseName = '',
         $collectionName = '',
         array $config = array(),
@@ -175,15 +175,46 @@ abstract class AModel
     // DB INTERFACE
     //--------------------------------------
 
+    /**
+     * Populate this model with specific object data from the database
+     *
+     * @param $id
+     * @return mixed
+     */
     abstract public function loadById($id);
 
+    /**
+     * Gets the name of the id key. Example: for mongo this would be _id
+     *
+     * @return string
+     */
     abstract public function getIdKeyName();
 
+    /**
+     * Update this object in the database with modified data
+     *
+     * @return mixed
+     */
     abstract public function update();
 
+    /**
+     * Insert this object into the database
+     *
+     * @return mixed
+     */
     abstract public function insert();
 
+    /**
+     * Remove/Delete this object from the database
+     *
+     * @return mixed
+     */
     abstract public function remove();
 
+    /**
+     * Generate an ID, this is used during insert, if the id value is null, then the result of this method is used
+     *
+     * @return mixed
+     */
     abstract public function getNewId();
 }

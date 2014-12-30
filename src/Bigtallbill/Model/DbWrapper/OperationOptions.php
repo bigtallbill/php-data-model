@@ -8,8 +8,15 @@
 
 namespace Bigtallbill\Model\DbWrapper;
 
-
-class OperationOptions extends \stdClass
+/**
+ * Forms the basis for an operation option.
+ *
+ * An operation option object is used to pass database-specific options for specific operations to the DbWrapper
+ *
+ * Class OperationOptions
+ * @package Bigtallbill\Model\DbWrapper
+ */
+abstract class OperationOptions
 {
     public $db;
     public $col;
